@@ -3,7 +3,8 @@ on: push
 env:
   DB_NAME: test
   DB_USER: root
-  DB_PASSWORD: ""
+  DB_PASSWORD: ""  # Make sure to set this securely
+
 jobs:
   run_code_checks:
     runs-on: ubuntu-latest
@@ -11,21 +12,24 @@ jobs:
       - name: Set up mysql
         run: |
           sudo /etc/init.d/mysql start
-          sudo mysql -e 'ALTER USER "${{env.DB_USER}}"@"localhost" IDENTIFIED BY ${-{env.DB_PASSWORD}}";' -uroot -proot
-          sudo mysql -e 'CREATE DATABASE ${{env.DB_NAME}}; ' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
+          sudo mysql -e "ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED WITH mysql_native_password BY '${{ env.DB_PASSWORD }}';"
+          sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${{env.DB_NAME}};" -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
 
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Change directory
         run: cd my-inventory
+
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.23.1
+          go-version: '1.21' # Or the latest stable version
+
       - name: Linting
         run: |
           go fmt ./...
           go vet ./...
+
       - name: Run tests
-        run: |
-          go test
+        run: go test
