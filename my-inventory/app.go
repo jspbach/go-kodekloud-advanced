@@ -142,6 +142,8 @@ func (app *App) createProduct(w http.ResponseWriter, r *http.Request) {
 		sendError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
+
+	sendResponse(w, http.StatusCreated, p)
 }
 
 func (app *App) handleRoutes() {
