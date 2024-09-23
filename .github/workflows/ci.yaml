@@ -3,7 +3,7 @@ on: push
 env:
   DB_NAME: test
   DB_USER: root
-  DB_PASSWORD: abcd@efg  # Consider storing this in GitHub secrets
+  DB_PASSWORD: abcd@efg
 
 jobs:
   run_code_checks:
@@ -12,8 +12,8 @@ jobs:
       - name: Set up mysql
         run: |
           sudo /etc/init.d/mysql start
-          sudo mysql -e "ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED WITH mysql_native_password BY '${{ env.DB_PASSWORD | escape }}';"
-          sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${{env.DB_NAME}};" -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD | escape }}
+          sudo mysql -e "ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED WITH mysql_native_password BY '${{ env.DB_PASSWORD }}';"
+          sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${{env.DB_NAME}};" -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
 
       - name: Checkout
         uses: actions/checkout@v3
