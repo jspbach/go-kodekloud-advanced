@@ -27,16 +27,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd my-directory
           go mod download
 
       - name: Linting
         run: |
-          cd my-directory
           go fmt ./...
           go vet ./...
 
       - name: Run tests
         run: |
-          cd my-directory
           go test
