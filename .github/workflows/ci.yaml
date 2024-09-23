@@ -23,15 +23,17 @@ jobs:
           go-version: '1.21'
 
       - name: Install dependencies
-        working-directory: my-directory/
-        run: go mod download
+        run: |
+          cd my-directory
+          go mod download
 
       - name: Linting
-        working-directory: my-directory/
         run: |
+          cd my-directory
           go fmt ./...
           go vet ./...
 
       - name: Run tests
-        working-directory: my-directory/
-        run: go test
+        run: |
+          cd my-directory
+          go test
