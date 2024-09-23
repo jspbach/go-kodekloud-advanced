@@ -76,13 +76,13 @@ func TestCreateProduct(t *testing.T) {
 
 	var m map[string]interface{}
 	json.Unmarshal(response.Body.Bytes(), &m)
-	
+
 	if m["name"] != "chair" {
 		t.Errorf("Expected name: %v, Got: %v", "chair", m["name"])
 	}
 
 	if m["quantity"] != 1.0 {
-	t.Errorf(  "Expected quantity: %v, Got: %v", 1.0, m["quantity"])
+		t.Errorf("Expected quantity: %v, Got: %v", 1.0, m["quantity"])
 	}
 }
 
@@ -101,7 +101,7 @@ func TestDeleteProduct(t *testing.T) {
 	req, _ = http.NewRequest("GET", "/product/1", nil)
 	response = sendRequest(req)
 	checkStatusCode(t, http.StatusNotFound, response.Code)
-		
+
 }
 
 func TestUpdateProduct(t *testing.T) {
@@ -142,4 +142,3 @@ func TestUpdateProduct(t *testing.T) {
 // try an getAll products
 // try malformed payloads
 // try deleting a product that doesnt exist
-	

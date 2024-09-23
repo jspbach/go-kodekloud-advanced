@@ -12,9 +12,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type App struct  {
+type App struct {
 	Router *mux.Router
-	DB *sql.DB
+	DB     *sql.DB
 }
 
 func (app *App) Initialize(dbUser string, dbPassword string, dbName string) error {
