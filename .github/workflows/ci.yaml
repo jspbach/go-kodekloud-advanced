@@ -23,7 +23,7 @@ jobs:
           go-version: '1.21'
 
       - name: Change directory
-        run: cd my-inventorycd my-inventory
+        run: cd my-inventory
 
       - name: Install dependencies
         run: go mod download
