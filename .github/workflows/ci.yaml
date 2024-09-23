@@ -3,7 +3,7 @@ on: push
 env:
   DB_NAME: test
   DB_USER: root
-  DB_PASSWORD: ""  # Make sure to set this securely
+  DB_PASSWORD: abcd@efg  # Make sure to set this securely
 
 jobs:
   run_code_checks:
