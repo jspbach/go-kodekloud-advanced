@@ -4,6 +4,9 @@ env:
   DB_NAME: test
   DB_USER: root
   DB_PASSWORD: root  # Use the default password for GitHub Actions' MySQL
+defaults:
+  run:
+    working-directory: my-inventory/  # Set the default working directory here
 
 jobs:
   run_code_checks:
