@@ -33,4 +33,5 @@ jobs:
           go vet ./...
 
       - name: Run tests
+        working-directory: ./my-directory
         run: go test
